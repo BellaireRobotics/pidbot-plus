@@ -68,6 +68,10 @@ void initialize();
  */
 void operatorControl();
 
+// Globals
+Mutex liftMutex;
+float liftPIDRequestedValue;
+
 // Drive
 void DriveTask(void *ignore);
 void driveSet(int Y, int X);

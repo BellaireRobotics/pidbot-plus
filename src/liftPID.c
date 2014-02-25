@@ -1,9 +1,9 @@
 #include "main.h"
 
-#define PID_MOTOR_SCALE    (-1)
-#define PID_DRIVE_MAX       127
-#define PID_DRIVE_MIN     (-127)
-#define PID_INTEGRAL_LIMIT  80
+#define PID_MOTOR_SCALE (-1)
+#define PID_DRIVE_MAX 127
+#define PID_DRIVE_MIN (-127)
+#define PID_INTEGRAL_LIMIT 80
 
 float  pid_Kp = 1;
 float  pid_Ki = 0.04;
@@ -22,9 +22,9 @@ void liftPIDTask(void *ignore) {
   while (1) {
     imeGet(IME_LIFT, &counts);
 
-    if (pidRunning) { // check if we should run PID
+    if (mutexTake(liftMutex, ULONG_MAX)) { // is the mutex available? if so, take control.
       pidSensorCurrentValue = counts; // getting current position
-      pidError = pidSensorCurrentValue - pidRequestedValue; // calculating error signal
+      pidError = pidSensorCurrentValue - liftPIDRequestedValue; // calculating error signal
 
       if (abs(pidError) < PID_INTEGRAL_LIMIT) { // calculating integral factor, given it is within bounds
         pidIntegral = pidIntegral + pidError;
@@ -46,6 +46,7 @@ void liftPIDTask(void *ignore) {
       }
 
       liftSet(pidDrive * PID_MOTOR_SCALE); // set lift motors
+      mutexGive(liftMutex); // give control back to LiftTask.
 
     } else { // reset all
       pidError = 0;
