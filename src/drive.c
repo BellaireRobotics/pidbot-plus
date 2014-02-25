@@ -61,7 +61,7 @@ void DriveTask(void *ignore) {
     driveSet(X, Y);
 
     taskDelay(20);
-  } 
+  }
 }
 
 void driveSet(int X, int Y) {

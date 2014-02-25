@@ -26,21 +26,24 @@ void liftPIDTask(void *ignore) {
       pidSensorCurrentValue = counts; // getting current position
       pidError = pidSensorCurrentValue - pidRequestedValue; // calculating error signal
 
-      if (abs(pidError) < PID_INTEGRAL_LIMIT) // calculating integral factor, given it is within bounds
+      if (abs(pidError) < PID_INTEGRAL_LIMIT) { // calculating integral factor, given it is within bounds
         pidIntegral = pidIntegral + pidError;
-      else
+      } else {
         pidIntegral = 0;
+      }
 
       pidDerivative = pidError - pidLastError; // calculate derivative factor
       pidLastError  = pidError;
 
       pidDrive = (pid_Kp * pidError) + (pid_Ki * pidIntegral) + (pid_Kd * pidDerivative); // sum all factors
 
-      if (pidDrive > PID_DRIVE_MAX) // limit max output
+      if (pidDrive > PID_DRIVE_MAX) { // limit max output
         pidDrive = PID_DRIVE_MAX;
+      }
 
-      if (pidDrive < PID_DRIVE_MIN)
+      if (pidDrive < PID_DRIVE_MIN) {
         pidDrive = PID_DRIVE_MIN;
+      }
 
       liftSet(pidDrive * PID_MOTOR_SCALE); // set lift motors
 

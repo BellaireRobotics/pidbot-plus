@@ -2,11 +2,13 @@
 
 void SolenoidTask(void *ignore) {
   while (1) {
-    if (joystickGetDigital(1, 7, JOY_UP) || joystickGetDigital(2, 7, JOY_UP))
+    if (joystickGetDigital(1, 7, JOY_UP) || joystickGetDigital(2, 7, JOY_UP)) {
       solenoidSet(HIGH);
+    }
 
-    if (joystickGetDigital(1, 7, JOY_DOWN) || joystickGetDigital(2, 7, JOY_DOWN)) 
+    if (joystickGetDigital(1, 7, JOY_DOWN) || joystickGetDigital(2, 7, JOY_DOWN)) {
       solenoidSet(LOW);
+    }
 
     taskDelay(25);
   }

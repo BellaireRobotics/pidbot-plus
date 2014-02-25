@@ -9,7 +9,7 @@
  * configure a UART port (usartOpen()) but cannot set up an LCD (lcdInit()).
  */
 void initializeIO() {
-	pinMode(SOLENOID_1, OUTPUT);
+  pinMode(SOLENOID_1, OUTPUT);
   pinMode(SOLENOID_2, OUTPUT);
 
   // start off lift unlocked
@@ -32,6 +32,7 @@ void initializeIO() {
 void initialize() {
   int count = imeInitializeAll();
 
-  if (count != 1)
+  if (count != 1) {
     printf("IME count is %u. It should be 1!", count);
+  }
 }

@@ -22,5 +22,5 @@ void operatorControl() {
   taskCreate(LiftTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT); // lift
   taskCreate(SolenoidTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT); // pneumatics
 
-	while (1) {} // ...and loop happily forever and ever after...
+  while (1) {} // ...and loop happily forever and ever after...
 }

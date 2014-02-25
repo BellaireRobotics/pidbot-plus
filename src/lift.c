@@ -15,15 +15,15 @@ void LiftTask(void *ignore) {
   while (1) {
     imeGet(IME_LIFT, &counts);
 
-    if (joystickGetDigital(1, 8, JOY_UP) || joystickGetDigital(2, 8, JOY_UP)) // check stash waypoint
+    if (joystickGetDigital(1, 8, JOY_UP) || joystickGetDigital(2, 8, JOY_UP)) { // check stash waypoint
       pidRequestedValue = LIFT_STASH_HEIGHT;
-    else if (joystickGetDigital(1, 8, JOY_LEFT) || joystickGetDigital(2, 8, JOY_LEFT)) // check bump waypoint
+    } else if (joystickGetDigital(1, 8, JOY_LEFT) || joystickGetDigital(2, 8, JOY_LEFT)) { // check bump waypoint
       pidRequestedValue = LIFT_BUMP_HEIGHT;
-    else if (joystickGetDigital(1, 8, JOY_DOWN) || joystickGetDigital(2, 8, JOY_DOWN)) // check floor waypoint
+    } else if (joystickGetDigital(1, 8, JOY_DOWN) || joystickGetDigital(2, 8, JOY_DOWN)) { // check floor waypoint
       pidRequestedValue = LIFT_FLOOR_HEIGHT;
-    else if (joystickGetDigital(1, 8, JOY_RIGHT) || joystickGetDigital(2, 8, JOY_RIGHT)) // check hang waypoint
+    } else if (joystickGetDigital(1, 8, JOY_RIGHT) || joystickGetDigital(2, 8, JOY_RIGHT)) { // check hang waypoint
       pidRequestedValue = LIFT_HANG_HEIGHT;
-    else if (joystickGetDigital(1, 6, JOY_UP) || joystickGetDigital(2, 6, JOY_UP)) { // if trigger up, turn PID off and override motors up, then turn PID on for the new position
+    } else if (joystickGetDigital(1, 6, JOY_UP) || joystickGetDigital(2, 6, JOY_UP)) { // if trigger up, turn PID off and override motors up, then turn PID on for the new position
       pidRunning = false;
       liftSet(127);
       pidRequestedValue = counts;
@@ -31,8 +31,9 @@ void LiftTask(void *ignore) {
       pidRunning = false;
       liftSet(-127);
       pidRequestedValue = counts;
-    } else // else keep running PID
+    } else { // else keep running PID
       pidRunning = true;
+    }
 
     taskDelay(25); // limit update rate of lift control, useful for future PID setpoint changes
   }
