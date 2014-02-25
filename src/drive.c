@@ -39,7 +39,7 @@ int tempY = 0;
 int tempXPartner = 0;
 int tempYPartner = 0;
 
-void drive() {
+void DriveTask(void *ignore) {
   while (1) {
     tempX = joystickGetAnalog(1, ACCEL_X);
     tempY = joystickGetAnalog(1, ACCEL_Y);
@@ -60,7 +60,7 @@ void drive() {
 
     driveSet(X, Y);
 
-    taskDelay(25);
+    taskDelay(20);
   } 
 }
 

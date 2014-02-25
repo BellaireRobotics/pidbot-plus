@@ -25,9 +25,9 @@
 #define LEFT_TOP_LIFT 6
 #define LEFT_BOTTOM_LIFT 7
 
-// Pneumatic Locks (Digital out)
-#define PNEUMATICS_LOCK_1 11
-#define PNEUMATICS_LOCK_2 12
+// Pneumatic Locks (Digital Out)
+#define SOLENOID_1 11
+#define SOLENOID_2 12
 
 // ---------------
 // Input (Sensors)
