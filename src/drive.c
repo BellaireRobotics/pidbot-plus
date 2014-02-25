@@ -46,6 +46,9 @@ void DriveTask(void *ignore) {
     tempXPartner = joystickGetAnalog(2, ACCEL_X);
     tempYPartner = joystickGetAnalog(2, ACCEL_Y);
 
+    printf("Joystick. X: %u Y: %u\n", tempX, tempY);
+
+    /*
     if (abs(tempYPartner) > JOYSTICK_DEADZONE) { // check if partner overrides Y
       Y = -tempYPartner / 2;
     } else {
@@ -57,10 +60,11 @@ void DriveTask(void *ignore) {
     } else {
       X = tempX;
     }
+    */
 
-    driveSet(X, Y);
+    driveSet(tempX, tempY);
 
-    taskDelay(20);
+    taskDelay(25);
   }
 }
 
