@@ -14,7 +14,7 @@ void IntakeTask(void *ignore) {
       intakeSet(0);
     }
 
-    taskDelay(25);
+    taskDelay(20);
   }
 }
 

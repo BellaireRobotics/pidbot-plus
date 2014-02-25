@@ -21,8 +21,8 @@ void operatorControl() {
   //bool joystick1Connected = isJoystickConnected(1);
   //bool joystick2Connected = isJoystickConnected(2);
 
-  taskCreate(DriveTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT); // drive
-  //taskCreate(LiftTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT); // lift
+  //taskCreate(DriveTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT); // drive
+  taskCreate(LiftTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT); // lift
   //taskCreate(LiftPIDTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT); // lift 
   //taskCreate(IntakeTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT); // intake
   //taskCreate(PneumaticsTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT); // pneumatics

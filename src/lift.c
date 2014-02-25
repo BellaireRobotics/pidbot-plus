@@ -30,9 +30,11 @@ void LiftTask(void *ignore) {
       liftSet(-127);
       liftPIDRequestedValue = counts;
       mutexGive(liftMutex);
+    } else {
+      liftSet(0);
     }
 
-    taskDelay(25);
+    taskDelay(20);
   }
 }
 
