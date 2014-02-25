@@ -41,14 +41,11 @@ int tempYPartner = 0;
 
 void DriveTask(void *ignore) {
   while (1) {
-    tempX = joystickGetAnalog(1, ACCEL_X);
-    tempY = joystickGetAnalog(1, ACCEL_Y);
-    tempXPartner = joystickGetAnalog(2, ACCEL_X);
-    tempYPartner = joystickGetAnalog(2, ACCEL_Y);
+    tempX = joystickGetAnalog(1, 1);
+    tempY = joystickGetAnalog(1, 3);
+    tempXPartner = joystickGetAnalog(2, 1);
+    tempYPartner = joystickGetAnalog(2, 3);
 
-    printf("Joystick. X: %u Y: %u\n", tempX, tempY);
-
-    /*
     if (abs(tempYPartner) > JOYSTICK_DEADZONE) { // check if partner overrides Y
       Y = -tempYPartner / 2;
     } else {
@@ -60,15 +57,14 @@ void DriveTask(void *ignore) {
     } else {
       X = tempX;
     }
-    */
 
-    driveSet(tempX, tempY);
+    driveSet(Y, X);
 
     taskDelay(25);
   }
 }
 
-void driveSet(int X, int Y) {
+void driveSet(int Y, int X) {
   // set drive speed to linearized PWM
   driveSetLeft(signum(Y - X) * TrueSpeed[abs(Y - X)]);
   driveSetRight(signum(Y + X) * TrueSpeed[abs(Y + X)]);
