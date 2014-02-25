@@ -85,8 +85,8 @@ void liftSet(int speed);
 // Lift PID
 void LiftPIDTask(void *ignore);
 
-// Solenoid
-void SolenoidTask(void *ignore);
+// Pneumatics
+void PneumaticsTask(void *ignore);
 void solenoidSet(bool value);
 
 // Intake

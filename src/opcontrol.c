@@ -18,9 +18,12 @@
  * This task should never exit; it should end with some kind of infinite loop, even if empty.
  */
 void operatorControl() {
+  //bool hasJoystick1 = isJoystickConnected(1);
+  //bool hasJoystick2 = isJoystickConnected(2);
+
   taskCreate(DriveTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT); // drive
   taskCreate(LiftTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT); // lift
-  taskCreate(SolenoidTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT); // pneumatics
+  taskCreate(PneumaticsTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT); // pneumatics
 
   while (1) {} // ...and loop happily forever and ever after...
 }

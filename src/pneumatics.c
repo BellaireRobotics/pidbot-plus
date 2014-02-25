@@ -1,6 +1,6 @@
 #include "main.h"
 
-void SolenoidTask(void *ignore) {
+void PneumaticsTask(void *ignore) {
   while (1) {
     if (joystickGetDigital(1, 7, JOY_UP) || joystickGetDigital(2, 7, JOY_UP)) {
       solenoidSet(HIGH);

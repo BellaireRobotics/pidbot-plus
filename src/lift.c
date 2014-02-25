@@ -6,8 +6,6 @@
 #define LIFT_STASH_HEIGHT       1100
 #define LIFT_HANG_HEIGHT        1280
 
-
-
 void LiftTask(void *ignore) {
   int counts;
 
@@ -34,7 +32,7 @@ void LiftTask(void *ignore) {
       mutexGive(liftMutex);
     }
 
-    taskDelay(25); // limit update rate of lift control, useful for future PID setpoint changes
+    taskDelay(20); // limit update rate of lift control, useful for future PID setpoint changes
   }
 }
 
