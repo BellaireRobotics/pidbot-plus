@@ -10,7 +10,7 @@ void LiftTask(void *ignore) {
   int counts;
 
   while (1) {
-    imeGet(IME_LIFT, &counts);
+    imeGet(IME_LIFT, &counts); // get lift encoder count
 
     if (joystickGetDigital(1, 8, JOY_UP) || joystickGetDigital(2, 8, JOY_UP)) { // check stash waypoint
       liftPIDRequestedValue = LIFT_STASH_HEIGHT;
@@ -32,7 +32,7 @@ void LiftTask(void *ignore) {
       mutexGive(liftMutex);
     }
 
-    taskDelay(20); // limit update rate of lift control, useful for future PID setpoint changes
+    taskDelay(25);
   }
 }
 

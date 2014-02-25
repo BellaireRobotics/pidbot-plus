@@ -5,24 +5,24 @@
 #define PID_DRIVE_MIN (-127)
 #define PID_INTEGRAL_LIMIT 80
 
-float  pid_Kp = 1;
-float  pid_Ki = 0.04;
-float  pid_Kd = 0.0;
+float pid_Kp = 1;
+float pid_Ki = 0.04;
+float pid_Kd = 0.0;
 
-float  pidSensorCurrentValue = 0;
-float  pidError = 0;
-float  pidLastError = 0;
-float  pidIntegral = 0;
-float  pidDerivative = 0;
-float  pidDrive = 0;
+float pidSensorCurrentValue = 0;
+float pidError = 0;
+float pidLastError = 0;
+float pidIntegral = 0;
+float pidDerivative = 0;
+float pidDrive = 0;
 
-void liftPIDTask(void *ignore) {
+void LiftPIDTask(void *ignore) {
   int counts;
 
   while (1) {
-    imeGet(IME_LIFT, &counts);
+    imeGet(IME_LIFT, &counts); // block until lift resources are available
 
-    if (mutexTake(liftMutex, ULONG_MAX)) { // is the mutex available? if so, take control.
+    if (mutexTake(liftMutex, ULONG_MAX)) { // block until mutex is available.
       pidSensorCurrentValue = counts; // getting current position
       pidError = pidSensorCurrentValue - liftPIDRequestedValue; // calculating error signal
 
@@ -45,7 +45,7 @@ void liftPIDTask(void *ignore) {
         pidDrive = PID_DRIVE_MIN;
       }
 
-      liftSet(pidDrive * PID_MOTOR_SCALE); // set lift motors
+      liftSet (pidDrive * PID_MOTOR_SCALE); // set lift motors
       mutexGive(liftMutex); // give control back to LiftTask.
 
     } else { // reset all
@@ -55,6 +55,6 @@ void liftPIDTask(void *ignore) {
       pidDerivative = 0;
     }
 
-    taskDelay(2);
+    taskDelay(25);
   }
 }

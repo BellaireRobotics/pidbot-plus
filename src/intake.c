@@ -1,6 +1,6 @@
 #include "main.h"
 
-bool intakeContinuousToggle = false;
+bool intakeContinuousToggle = false; // TODO: add toggle for this
 
 void IntakeTask(void *ignore) {
   while (1) {
